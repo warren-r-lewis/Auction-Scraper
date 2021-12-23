@@ -12,13 +12,15 @@
     <None Remove="HtmlAgilityPack" />
     <None Remove="Logic\" />
     <None Remove="Logic\AuctionSiteLogic\" />
+    <None Remove="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\WebsiteLogic\" />
-    <Folder Include="Models\AuctionTypeLogic\" />
+    <Folder Include="Models\Websites\" />
+    <Folder Include="Models\Auctions\" />
     <Folder Include="Logic\" />
     <Folder Include="Logic\AuctionTypeLogic\" />
     <Folder Include="Logic\AuctionSiteLogic\" />
+    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
