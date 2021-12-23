@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Models\WebsiteLogic\" />
+    <None Remove="Models\AuctionTypeLogic\" />
+    <None Remove="HtmlAgilityPack" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\WebsiteLogic\" />
+    <Folder Include="Models\AuctionTypeLogic\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
+  </ItemGroup>
+</Project>
