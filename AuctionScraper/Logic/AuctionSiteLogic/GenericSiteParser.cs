@@ -12,33 +12,65 @@ namespace AuctionScraper.Logic.AuctionSiteLogic
             return await response;
         }
 
-        public static List<GenericAuction> RetrieveNews()
+        public static List<HtmlNode> RetrieveItemNodes(string searchUrl, string searchItem, string selectorNodes)
         {
-            var nytimes = "https://www.nytimes.com/";
-            var ny_response = CallUrl(nytimes).Result;
-            HtmlDocument ny_htmlDocument = new HtmlDocument();
-            ny_htmlDocument.LoadHtml(ny_response);
+            var searchResults = searchUrl + searchItem;
+            var searchResultsResponse = CallUrl(searchResults).Result;
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(searchResultsResponse);
             var Nodes = new List<HtmlNode>();
-            Nodes = ny_htmlDocument.DocumentNode.SelectNodes("//h3").ToList(); //.Where(x=>x.InnerHtml.Contains("story-wrapper")).ToList();
-            var auctionItems = new List<GenericAuction>();
+            Nodes = htmlDocument.DocumentNode.SelectNodes(selectorNodes).ToList();
+
+
+            return Nodes;
+
+        }
+
+        public static List<HemmingsAuction> RetriveAuctionItemsHemmings(List<HtmlNode> Nodes)
+        {
+            var auctionItems = new List<HemmingsAuction>();
             foreach (var node in Nodes)
             {
-                string title = node.InnerText;
+
+                string auctionItem = "No Item Name";
                 string url = "No Url";
-                var urlParent = node.ParentNode.Ancestors();
-                foreach (var urlNode in urlParent)
+                string pictureURL = "No Picture";
+                string currentBid = "No Bid Avalaible";
+                string auctionEndDate = "No End Date Avialable";
+                foreach (var subNode in Nodes)
                 {
-                    if (urlNode.Name == "a")
+                    if (subNode.Name == "a[@class='block text-green-700 relative']")
                     {
-                        url = urlNode.Attributes["href"].Value;
+                        url = subNode.Attributes["href"].Value;
+                        pictureURL = subNode.Attributes["img"].Value;
                     }
+                    if (subNode.Name == "a" && subNode.Name != "a[@class='block text-green-700 relative']]")
+                    {
+                        auctionItem = subNode.InnerHtml;
+                    }
+                    if (subNode.Name == "span[@class='uppercase font-semibold']")
+                    {
+                        currentBid = subNode.InnerHtml;
+                    }
+                    if (subNode.Name == "div[@class='flex flex-row']")
+                    {
+                        string htmlString = subNode.InnerHtml;
+                        int days = int.Parse(Regex.Match(htmlString, @"\d+").Value);
+                        var currentDate = DateTime.UtcNow.Date;
+                        auctionEndDate = currentDate.AddDays(days).ToString("dd / MM / yyyy");
+
+                    }
+                    
                 }
 
-                var item = new GenericAuction();
+                var item = new HemmingsAuction(auctionItem, "Hemmings", url, pictureURL, "Ongoing", currentBid, auctionEndDate);
                 auctionItems.Add(item);
             }
             return auctionItems;
+
+
         }
+
         public GenericSiteParser()
 		{
 		}

@@ -7,3 +7,4 @@ global using System.Text;
 global using System.IO;
 global using AuctionScraper.Models.Auctions;
 global using AuctionScraper.Models.Websites;
+global using System.Text.RegularExpressions;
