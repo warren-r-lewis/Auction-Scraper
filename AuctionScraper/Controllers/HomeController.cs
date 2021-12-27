@@ -15,7 +15,8 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View();
+        ViewData["searchItem"] = searchItem;
+        return View(searchItem);
     }
 
     public IActionResult Privacy()
@@ -27,6 +28,16 @@ public class HomeController : Controller
     public IActionResult Error()
     {
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+    Search searchItem = new Search("No Item");
+    
+
+    [HttpPost]
+    public string Search(string search)
+    {
+        searchItem.searchItem = search;
+
+        return search;
     }
 
 
