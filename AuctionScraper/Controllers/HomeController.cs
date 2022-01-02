@@ -30,8 +30,8 @@ public class HomeController : Controller
         return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
     }
     Search searchItem = new Search("No Item");
-    
 
+    
     [HttpPost]
     public string Search(string search)
     {
@@ -39,7 +39,7 @@ public class HomeController : Controller
 
         return search;
     }
-
+    
 
 }
 

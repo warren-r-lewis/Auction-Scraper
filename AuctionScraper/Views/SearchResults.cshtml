@@ -1,0 +1,22 @@
+﻿@model List<HemmingsAuction>
+@{
+}
+@foreach (var item in Model)
+{
+    <li>
+        @item.AuctionType
+    </li>
+    <li>
+        @item.ItemName
+    </li>
+    <li>
+        @item.CurrentBid
+    </li>
+    <li>
+        @item.EndDate
+    </li>
+    <li>
+        @item.Url
+    </li>
+    <br>
+}
