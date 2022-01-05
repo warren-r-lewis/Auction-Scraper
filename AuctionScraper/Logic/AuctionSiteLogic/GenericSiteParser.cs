@@ -12,22 +12,23 @@ namespace AuctionScraper.Logic.AuctionSiteLogic
             return await response;
         }
 
-        public static List<HtmlNode> RetrieveItemNodes(string searchUrl, string searchItem, string selectorNodes)
+        public static List<HtmlNode> RetrieveItemNodes(GenericWebsite genericWebsite, string searchItem/*string searchUrl, string searchItem, string selectorNodes*/)
         {
-            var searchResults = searchUrl + searchItem;
+            var searchResults = genericWebsite.WebsiteSearchUrl + searchItem;
             var searchResultsResponse = CallUrl(searchResults).Result;
             HtmlDocument htmlDocument = new HtmlDocument();
             htmlDocument.LoadHtml(searchResultsResponse);
             var Nodes = new List<HtmlNode>();
-            Nodes = htmlDocument.DocumentNode.SelectNodes(selectorNodes).ToList();
+            Nodes = htmlDocument.DocumentNode.SelectNodes(genericWebsite.SelectNodes).ToList();
 
 
             return Nodes;
 
         }
 
-        public static List<HemmingsAuction> RetriveAuctionItemsHemmings(List<HtmlNode> Nodes)
+        public static List<HemmingsAuction> RetriveAuctionItemsHemmings(GenericWebsite genericWebsite, string searchItem)
         {
+            List<HtmlNode> Nodes = RetrieveItemNodes(genericWebsite, searchItem);
             var auctionItems = new List<HemmingsAuction>();
             foreach (var node in Nodes)
             {

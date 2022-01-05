@@ -2,7 +2,11 @@
 {
     public class ResultList
     {
-        public HemmingsAuction HemmingsAuction { get; set; }
+        public List<HemmingsAuction> HemmingsAuction { get; set; }
+        public ResultList(List<HemmingsAuction> hemmingsAuction)
+        {
+            HemmingsAuction = hemmingsAuction;
+        }
 
     }
 }

@@ -21,13 +21,14 @@ public class HomeController : Controller
     public IActionResult Index()
     {
         ViewData["searchItem"] = searchItem;
-        return View(searchItem);
+        return View();
     }
 
     public IActionResult Privacy()
     {
         return View();
     }
+
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
@@ -36,15 +37,22 @@ public class HomeController : Controller
     }
     Search searchItem = new Search("No Item");
 
-    
-    [HttpPost]
+
+    /*[HttpPost]
     public string Search(string search)
     {
         searchItem.searchItem = search;
 
         return search;
-    }
-    
+    }*/
 
+    [HttpPost]
+    public IActionResult SearchResults(string search)
+    {
+        searchItem.searchItem = search;
+        //Logic.AuctionSiteLogic.GenericSiteParser.RetriveAuctionItemsHemmings(Logic.AuctionSiteLogic.GenericSiteParser.RetrieveItemNodes(WebsiteList.Hemmings, search));
+        ResultList resultList = new ResultList(GenericSiteParser.RetriveAuctionItemsHemmings(WebsiteList.Hemmings, search));
+        return View(resultList);
+    }
 }
 

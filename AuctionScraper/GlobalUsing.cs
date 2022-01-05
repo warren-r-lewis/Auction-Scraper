@@ -8,3 +8,4 @@ global using System.IO;
 global using AuctionScraper.Models.Auctions;
 global using AuctionScraper.Models.Websites;
 global using System.Text.RegularExpressions;
+global using AuctionScraper.Logic.AuctionSiteLogic;
