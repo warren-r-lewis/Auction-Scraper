@@ -4,10 +4,13 @@
 @foreach (var item in Model)
 {
     <li>
-        @item.AuctionType
+        @item.WebsiteName
     </li>
     <li>
         @item.ItemName
+    </li>
+    <li>
+        @item.AuctionType
     </li>
     <li>
         @item.CurrentBid
@@ -16,7 +19,10 @@
         @item.EndDate
     </li>
     <li>
-        @item.Url
+        <a href=@item.Url>Go to Auction</a>
+    </li>
+    <li>
+       <img src=@item.Picture alt="No photo available">
     </li>
     <br>
 }

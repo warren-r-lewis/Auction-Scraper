@@ -15,7 +15,6 @@
     <None Remove="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Auctions\" />
     <Folder Include="Logic\" />
     <Folder Include="Logic\AuctionTypeLogic\" />
     <Folder Include="Logic\AuctionSiteLogic\" />
@@ -23,5 +22,6 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="6.0.1" />
   </ItemGroup>
 </Project>

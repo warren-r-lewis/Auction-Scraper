@@ -6,6 +6,11 @@ namespace AuctionScraper.Controllers;
 
 public class HomeController : Controller
 {
+    
+    public enum Websites {
+        
+
+    }
     private readonly ILogger<HomeController> _logger;
 
     public HomeController(ILogger<HomeController> logger)
