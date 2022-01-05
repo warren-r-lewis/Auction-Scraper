@@ -15,7 +15,6 @@
     <None Remove="Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\Websites\" />
     <Folder Include="Models\Auctions\" />
     <Folder Include="Logic\" />
     <Folder Include="Logic\AuctionTypeLogic\" />
