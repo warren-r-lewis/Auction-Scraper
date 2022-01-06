@@ -50,10 +50,11 @@ namespace AuctionScraper.Logic.AuctionSiteLogic
                     {
                         auctionItem = subNode.InnerHtml;
                     }
-                    if (subNode.Name == "//span[@class='uppercase font-semibold']")
+                    if (subNode.InnerText.Contains("$"))
                     {
-                        currentBid = subNode.InnerHtml;
+                        currentBid = subNode.InnerText;
                     }
+                    /*
                     if (subNode.Name == "//div[@class='flex flex-row']")
                     {
                         string htmlString = subNode.InnerHtml;
@@ -61,8 +62,14 @@ namespace AuctionScraper.Logic.AuctionSiteLogic
                         var currentDate = DateTime.UtcNow.Date;
                         auctionEndDate = currentDate.AddDays(days).ToString("dd / MM / yyyy");
 
-                    }
-                    
+                    }*/
+                    /*
+                    string htmlString =subNode.SelectSingleNode("//div[@class='flex flex-row']").InnerHtml;
+                    int days = int.Parse(Regex.Match(htmlString, @"\d+").Value);
+                    var currentDate = DateTime.UtcNow.Date;
+                    auctionEndDate = currentDate.AddDays(days).ToString("dd / MM / yyyy");
+                    */
+
                 }
 
                 var item = new HemmingsAuction(auctionItem, "Hemmings", url, pictureURL, "Ongoing", currentBid, auctionEndDate);
