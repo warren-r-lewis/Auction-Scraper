@@ -32,28 +32,29 @@ namespace AuctionScraper.Logic.AuctionSiteLogic
             var auctionItems = new List<HemmingsAuction>();
             foreach (var node in Nodes)
             {
-
+                
                 string auctionItem = "No Item Name";
                 string url = "No Url";
                 string pictureURL = "No Picture";
                 string currentBid = "No Bid Avalaible";
                 string auctionEndDate = "No End Date Avialable";
-                foreach (var subNode in Nodes)
+               
+                foreach (var subNode in node.Descendants())
                 {
-                    if (subNode.Name == "a[@class='block text-green-700 relative']")
+                    if (subNode.Name == "a" && subNode.InnerHtml.Contains("img"))
                     {
                         url = subNode.Attributes["href"].Value;
-                        pictureURL = subNode.Attributes["img"].Value;
+                        pictureURL = subNode.Element("img").Attributes["src"].Value; //FirstChild.Attributes["src"].Value;
                     }
-                    if (subNode.Name == "a" && subNode.Name != "a[@class='block text-green-700 relative']]")
+                    if (subNode.Name == "a" && subNode.Name != "//a[@class='block text-green-700 relative']")
                     {
                         auctionItem = subNode.InnerHtml;
                     }
-                    if (subNode.Name == "span[@class='uppercase font-semibold']")
+                    if (subNode.Name == "//span[@class='uppercase font-semibold']")
                     {
                         currentBid = subNode.InnerHtml;
                     }
-                    if (subNode.Name == "div[@class='flex flex-row']")
+                    if (subNode.Name == "//div[@class='flex flex-row']")
                     {
                         string htmlString = subNode.InnerHtml;
                         int days = int.Parse(Regex.Match(htmlString, @"\d+").Value);
