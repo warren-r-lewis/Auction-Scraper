@@ -7,6 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Data\**" />
+    <Compile Remove="Logic\AuctionTypeLogic\**" />
+    <Content Remove="Data\**" />
+    <Content Remove="Logic\AuctionTypeLogic\**" />
+    <EmbeddedResource Remove="Data\**" />
+    <EmbeddedResource Remove="Logic\AuctionTypeLogic\**" />
+    <None Remove="Data\**" />
+    <None Remove="Logic\AuctionTypeLogic\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Models\WebsiteLogic\" />
     <None Remove="Models\AuctionTypeLogic\" />
     <None Remove="HtmlAgilityPack" />
@@ -16,9 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Logic\" />
-    <Folder Include="Logic\AuctionTypeLogic\" />
     <Folder Include="Logic\AuctionSiteLogic\" />
-    <Folder Include="Data\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="HtmlAgilityPack" Version="1.11.39" />
