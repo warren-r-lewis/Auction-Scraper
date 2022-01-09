@@ -16,3 +16,8 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.resultItem {
+    display: inline-flex;
+    justify-content: space-between;
+}

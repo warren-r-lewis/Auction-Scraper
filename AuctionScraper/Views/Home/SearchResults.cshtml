@@ -1,8 +1,10 @@
-﻿@model List<HemmingsAuction>
+﻿@model ResultList
 @{
 }
-@foreach (var item in Model)
-{
+
+@foreach (var item in Model.Capital)
+{   
+    <div class="resultItem">
     <li>
         @item.WebsiteName
     </li>
@@ -25,4 +27,32 @@
        <img src=@item.Picture alt="No photo available">
     </li>
     <br>
+    </div>
+}
+@foreach (var item in Model.HemmingsAuction)
+{   
+    <div class="resultItem">
+    <li>
+        @item.WebsiteName
+    </li>
+    <li>
+        @item.ItemName
+    </li>
+    <li>
+        @item.AuctionType
+    </li>
+    <li>
+        @item.CurrentBid
+    </li>
+    <li>
+        @item.EndDate
+    </li>
+    <li>
+        <a href=@item.Url>Go to Auction</a>
+    </li>
+    <li>
+       <img src=@item.Picture alt="No photo available">
+    </li>
+    <br>
+    </div>
 }

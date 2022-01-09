@@ -50,8 +50,7 @@ public class HomeController : Controller
     public IActionResult SearchResults(string search)
     {
         searchItem.searchItem = search;
-        //Logic.AuctionSiteLogic.GenericSiteParser.RetriveAuctionItemsHemmings(Logic.AuctionSiteLogic.GenericSiteParser.RetrieveItemNodes(WebsiteList.Hemmings, search));
-        ResultList resultList = new ResultList(GenericSiteParser.RetriveAuctionItemsHemmings(WebsiteList.Hemmings, search));
+        ResultList resultList = new ResultList(GenericSiteParser.RetriveAuctionItemsHemmings(WebsiteList.Hemmings, search), GenericSiteParser.RetrieveAuctionItemsCapital(WebsiteList.Capital, search));
         return View(resultList);
     }
 }
