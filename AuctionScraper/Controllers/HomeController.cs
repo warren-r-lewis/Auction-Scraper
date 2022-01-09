@@ -38,19 +38,11 @@ public class HomeController : Controller
     Search searchItem = new Search("No Item");
 
 
-    /*[HttpPost]
-    public string Search(string search)
-    {
-        searchItem.searchItem = search;
-
-        return search;
-    }*/
-
     [HttpPost]
     public IActionResult SearchResults(string search)
     {
         searchItem.searchItem = search;
-        ResultList resultList = new ResultList(GenericSiteParser.RetriveAuctionItemsHemmings(WebsiteList.Hemmings, search), GenericSiteParser.RetrieveAuctionItemsCapital(WebsiteList.Capital, search));
+        ResultList resultList = new ResultList(GenericSiteParser.RetriveAuctionItemsHemmings(WebsiteList.Hemmings, search)/*, GenericSiteParser.RetrieveAuctionItemsCapital(WebsiteList.Capital, search)*/);
         return View(resultList);
     }
 }

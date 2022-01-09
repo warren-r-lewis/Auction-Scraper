@@ -45,7 +45,7 @@ namespace AuctionScraper.Logic.AuctionSiteLogic
                     if (subNode.Name == "a" && subNode.InnerHtml.Contains("img"))
                     {
                         url = subNode.Attributes["href"].Value;
-                        pictureURL = subNode.Element("img").Attributes["src"].Value; //FirstChild.Attributes["src"].Value;
+                        pictureURL = subNode.Element("img").Attributes["src"].Value; 
                     }
                     if (subNode.Name == "a" && subNode.Name != "//a[@class='block text-green-700 relative']")
                     {
@@ -80,6 +80,7 @@ namespace AuctionScraper.Logic.AuctionSiteLogic
 
 
         }
+        //Currently not working
         public static List<HemmingsAuction> RetrieveAuctionItemsCapital(GenericWebsite genericWebsite, string searchItem)
         {
             List<HtmlNode> Nodes = RetrieveItemNodes(genericWebsite, searchItem);
